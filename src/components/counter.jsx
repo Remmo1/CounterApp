@@ -13,19 +13,37 @@ class Counter extends Component {
         color: "black"
     };
 
+    /*
+    mozna go pominac jesli sie zrobi lamdbe
+    constructor() {
+        super();
+        this.handleIncrement = this.handleIncrement.bind(this);
+    }
+    */
+
+    handleIncrement = product => {
+        console.log(product);
+        this.setState({ count: this.state.count + 1 });
+    };
+
     renderTags() {
         if (this.state.tags.length === 0) return <p>There are no tags!</p>
        
         return <ul> {this.state.tags.map(tag => <li key={tag}>{tag}</li>)} </ul>
-    }
-    
+    };
+
     render() { 
 
         return ( 
         <React.Fragment>
             <img src={this.state.imageUrl} alt=""></img>
+
             <span style={this.styles} className={this.getBadgeClasses()}>{this.formatCount()}</span>
-            <button className="btn btn-secondary btn-sm">Increment</button>
+
+            <button 
+                className="btn btn-secondary btn-sm" 
+                onClick={ () => this.handleIncrement({id : 1}) }>Increment
+            </button>
 
             <div>
                 {this.state.tags.length === 0 && 'please create a new tag!'}
